@@ -1,0 +1,81 @@
+/* -------------------- GLOBAL STYLES -------------------- */
+body {
+  font-family: 'Poppins', sans-serif;
+  padding-top: 100px; /* space for fixed header */
+  background-color: var(--skilllink-light);
+  transition: background-color 0.3s;
+  min-height: 100vh; /* ensures footer stays at bottom */
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+}
+
+/* -------------------- COLOR VARIABLES -------------------- */
+:root {
+  --skilllink-light: #f8fafc; /* body background light */
+  --skilllink-dark: #0f172a;  /* body background dark */
+  --header-light: #e0f2fe;     /* header light gradient start */
+  --header-dark: #1e293b;      /* header/footer dark gradient start */
+  --footer-light: #f1f5f9;     /* footer light background */
+}
+
+/* -------------------- DARK MODE -------------------- */
+html.dark body {
+  background-color: var(--skilllink-dark);
+}
+
+/* -------------------- HEADER -------------------- */
+.bg-header-light-gradient {
+  background: linear-gradient(to left, #e0f2fe, #a9e1ff);
+}
+
+html.dark .bg-header-dark-gradient {
+  background: linear-gradient(to right, var(--header-dark), #1f3569);
+}
+
+/* Mobile menu & dropdowns */
+#mobile-menu {
+  background: linear-gradient(to left, #e0f2fe, #a9e1ff);
+}
+
+html.dark #mobile-menu {
+  background: linear-gradient(to right, var(--header-dark), #1f3569);
+}
+
+#contactDropdownMobile {
+  background: linear-gradient(to left, #e0f2fe, #a9e1ff);
+}
+
+html.dark #contactDropdownMobile {
+  background: linear-gradient(to right, var(--header-dark), #1f3569);
+}
+
+/* -------------------- FOOTER -------------------- */
+footer {
+  background-color: var(--footer-light); /* light mode footer */
+  color: #374151; /* text for light mode */
+  transition: background-color 0.3s, color 0.3s;
+  flex-shrink: 0; /* ensures footer stays at bottom */
+}
+
+/* Dark mode: match header background and lighten text */
+html.dark footer {
+  background-color: var(--header-dark); /* same as header dark */
+  color: #d1d5db; /* light text */
+}
+
+/* Footer links hover */
+footer a {
+  transition: color 0.2s;
+}
+
+footer a:hover {
+  color: #0ea5e9; /* sky-500 */
+}
+
+html.dark footer a:hover {
+  color: #14b8a6; /* teal-400 */
+}
