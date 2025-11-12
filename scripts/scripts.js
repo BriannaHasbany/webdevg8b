@@ -247,6 +247,7 @@ function hideComingSoon() {
   document.getElementById("comingSoonPopup").classList.add("hidden");
 }
 
+//-------------------- FONT SIZE ADJUSTMENT --------------------
 document.addEventListener("DOMContentLoaded", function () {
   const root = document.documentElement;
 
@@ -286,3 +287,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
   adjustFooterSpacing(); // adjust on page load
 });
+
+// -------------------- HOME TAGLINE --------------------
+const taglineSection = document.getElementById('tagline');
+const words = document.querySelectorAll('.slide-word');
+
+const observer = new IntersectionObserver(
+  entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        taglineSection.classList.add('show');
+        words.forEach(word => word.classList.add('show'));
+        observer.unobserve(taglineSection); // only trigger once
+      }
+    });
+  },
+  { threshold: 0.5 } // triggers when 50% of section is visible
+);
+
+observer.observe(taglineSection);
