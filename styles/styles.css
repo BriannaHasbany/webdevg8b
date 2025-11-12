@@ -59,6 +59,7 @@ footer {
   color: #374151; /* text for light mode */
   transition: background-color 0.3s, color 0.3s;
   flex-shrink: 0; /* ensures footer stays at bottom */
+  margin-top: 1rem;
 }
 
 /* Dark mode: match header background and lighten text */

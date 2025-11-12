@@ -2,42 +2,41 @@ document.addEventListener("DOMContentLoaded", function () {
   // -------------------- HEADER INJECTION --------------------
   const headerHTML = `
 <header id="siteHeader" class="fixed top-0 left-0 w-full z-50 bg-header-light-gradient dark:bg-header-dark-gradient shadow-md font-poppins">
-  <div class="flex justify-between items-center px-8 py-4">
+  <div class="flex justify-between items-center px-6 py-4">
 
-    <!-- Empty left to center logo/title -->
+    <!-- Left spacer -->
     <div class="hidden md:flex md:flex-1"></div>
 
-    <!-- Center: logo + title side by side -->
-    <div class="flex items-center space-x-4 mx-auto">
-      <img src="images/SkillLink.png" alt="Logo" class="w-20 h-20">
-      <h1 class="text-4xl font-extrabold text-sky-600 dark:text-teal-300">SkillLink</h1>
+    <!-- Center logo/title -->
+    <div class="flex items-center space-x-3 mx-auto">
+      <img src="images/SkillLink.png" alt="Logo" class="w-16 h-16">
+      <h1 class="text-3xl font-extrabold text-sky-600 dark:text-teal-300">SkillLink</h1>
     </div>
 
-    <!-- Right: font size controls + dark mode toggle + mobile controls -->
-    <div class="flex items-center space-x-4 md:flex-1 md:justify-end">
-
-      <!-- Font size controls (desktop only) -->
+    <!-- Right controls -->
+    <div class="flex flex-col items-end space-y-2 md:space-y-0 md:flex-row md:items-center md:space-x-4 md:flex-1 md:justify-end">
+      
+      <!-- Desktop font controls -->
       <div class="hidden md:flex items-center space-x-2" aria-label="Font size controls">
-        <button 
-          id="decreaseFont" 
-          class="px-2 py-1 text-lg font-bold border border-sky-300 dark:border-teal-500 rounded hover:bg-sky-100 dark:hover:bg-teal-700 transition"
-          aria-label="Decrease font size">−</button>
-
-        <button 
-          id="increaseFont" 
-          class="px-2 py-1 text-lg font-bold border border-sky-300 dark:border-teal-500 rounded hover:bg-sky-100 dark:hover:bg-teal-700 transition"
-          aria-label="Increase font size">+</button>
+        <button id="decreaseFont" class="px-2 py-1 text-lg font-bold border border-sky-300 dark:border-teal-500 rounded hover:bg-sky-100 dark:hover:bg-teal-700">−</button>
+        <button id="increaseFont" class="px-2 py-1 text-lg font-bold border border-sky-300 dark:border-teal-500 rounded hover:bg-sky-100 dark:hover:bg-teal-700">+</button>
       </div>
 
-      <!-- Desktop dark mode toggle -->
+      <!-- Desktop dark mode -->
       <button id="modeToggle" class="hidden md:block text-2xl hover:text-indigo-500 dark:hover:text-teal-300">🌙</button>
 
-      <!-- Mobile dark mode toggle -->
-      <button id="modeToggleMobile" class="text-2xl hover:text-indigo-500 dark:hover:text-teal-300 md:hidden">🌙</button>
-
-      <!-- Hamburger -->
-      <button id="menu-btn" class="md:hidden text-2xl dark:text-gray-100">☰</button>
+      <!-- Mobile: dark mode + menu -->
+      <div class="flex md:hidden items-center space-x-3">
+        <button id="modeToggleMobile" class="text-2xl hover:text-indigo-500 dark:hover:text-teal-300">🌙</button>
+        <button id="menu-btn" class="text-2xl dark:text-gray-100">☰</button>
+      </div>
     </div>
+  </div>
+
+  <!-- Mobile font controls BELOW toggles -->
+  <div class="flex md:hidden justify-center items-center space-x-2 pb-3" aria-label="Font size controls">
+    <button id="decreaseFontMobile" class="px-3 py-1 text-lg font-bold border border-sky-300 dark:border-teal-500 rounded hover:bg-sky-100 dark:hover:bg-teal-700">−</button>
+    <button id="increaseFontMobile" class="px-3 py-1 text-lg font-bold border border-sky-300 dark:border-teal-500 rounded hover:bg-sky-100 dark:hover:bg-teal-700">+</button>
   </div>
 
   <!-- Desktop Nav -->
@@ -76,8 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
     </ul>
   </div>
 </header>
-
-
 `;
 
   const headerContainer = document.getElementById("header");
@@ -250,30 +247,42 @@ function hideComingSoon() {
   document.getElementById("comingSoonPopup").classList.add("hidden");
 }
 
-// ----- FONT SIZE CONTROLS -----
-const increaseBtn = document.getElementById("increaseFont");
-const decreaseBtn = document.getElementById("decreaseFont");
+document.addEventListener("DOMContentLoaded", function () {
+  const root = document.documentElement;
 
-function getFontSize() {
-  return parseFloat(localStorage.getItem("fontSize")) || 16;
-}
+  // Load saved font size for the current session
+  let currentSize = parseInt(sessionStorage.getItem("fontSize")) || 100;
+  root.style.fontSize = currentSize + "%";
 
-function setFontSize(size) {
-  document.documentElement.style.fontSize = size + "px";
-  localStorage.setItem("fontSize", size);
-}
+  function adjustFontSize(change) {
+    currentSize = Math.min(Math.max(currentSize + change, 80), 150);
+    root.style.fontSize = currentSize + "%";
+    sessionStorage.setItem("fontSize", currentSize); // remember until tab closes
+    adjustFooterSpacing();
+  }
 
-// Initialize font size
-setFontSize(getFontSize());
+  function adjustFooterSpacing() {
+    const footer = document.querySelector("footer");
+    if (footer) {
+      // Make sure footer isn’t cut off when font size grows
+      footer.style.marginTop = currentSize > 100 ? "2rem" : "1rem";
+    }
+  }
 
-increaseBtn?.addEventListener("click", () => {
-  let size = getFontSize();
-  if (size < 22) size += 1;
-  setFontSize(size);
-});
+  // Buttons (desktop + mobile)
+  const increaseBtns = document.querySelectorAll(
+    "#increaseFont, #increaseFontMobile"
+  );
+  const decreaseBtns = document.querySelectorAll(
+    "#decreaseFont, #decreaseFontMobile"
+  );
 
-decreaseBtn?.addEventListener("click", () => {
-  let size = getFontSize();
-  if (size > 12) size -= 1;
-  setFontSize(size);
+  increaseBtns.forEach((btn) =>
+    btn.addEventListener("click", () => adjustFontSize(10))
+  );
+  decreaseBtns.forEach((btn) =>
+    btn.addEventListener("click", () => adjustFontSize(-10))
+  );
+
+  adjustFooterSpacing(); // adjust on page load
 });
