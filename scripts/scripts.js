@@ -43,9 +43,10 @@ document.addEventListener("DOMContentLoaded", function () {
   <nav class="hidden md:flex justify-center gap-6 md:gap-8 px-8 py-2 w-full">
     <a href="index.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">Home</a>
     <a href="find-mentor.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">Find a Mentor</a>
-    <a href="skills.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">Skills & Goals</a>
+    <a href="skills.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">Skills & Courses</a>
     <a href="pricing.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">Pricing</a>
     <a href="about.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">About Us</a>
+    <a href="dashboard.html" class="hover:text-sky-600 dark:hover:text-teal-400 text-gray-800 dark:text-gray-100">Dashboard Simulation</a>
 
     <!-- Desktop Dropdown -->
     <div class="relative">
@@ -62,9 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
     <ul class="flex flex-col items-start py-4 space-y-1 w-full">
       <a href="index.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Home</a>
       <a href="find-mentor.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Find a Mentor</a>
-      <a href="skills.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Skills & Goals</a>
+      <a href="skills.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Skills & Courses</a>
       <a href="pricing.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Pricing</a>
       <a href="about.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">About Us</a>
+      <a href="dashboard.html" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Dashboard Simulation</a>
 
       <!-- Mobile dropdown -->
       <button id="contactDropdownBtnMobile" class="w-full px-4 py-2 text-left text-gray-800 dark:text-gray-100 hover:text-sky-600 dark:hover:text-teal-400">Contact ▾</button>
@@ -180,8 +182,8 @@ document.addEventListener("DOMContentLoaded", function () {
         <p class="text-sm">Connecting mentors and learners around the world.</p>
         <div class="mt-2 space-y-1 text-sm">
           <p>Email: <a href="mailto:info@skilllink.com" class="hover:text-sky-600 dark:hover:text-teal-400">info@skilllink.com</a></p>
-          <p>Phone: <a href="tel:+1234567890" class="hover:text-sky-600 dark:hover:text-teal-400">+1 (234) 567-890</a></p>
-          <p>Address: 123 Startup Lane, Innovation City, USA</p>
+          <p>Phone: <a href="tel:+1234567890" class="hover:text-sky-600 dark:hover:text-teal-400">+1 (234) 567-8900</a></p>
+          <p>Address: 315 Turnpike St, North Andover, MA 01845</p>
         </div>
       </div>
 
@@ -191,8 +193,9 @@ document.addEventListener("DOMContentLoaded", function () {
           <h3 class="font-semibold">Explore</h3>
           <a href="index.html" class="block hover:text-sky-600 dark:hover:text-teal-400 transition">Home</a>
           <a href="find-mentor.html" class="block hover:text-sky-600 dark:hover:text-teal-400 transition">Find a Mentor</a>
-          <a href="skills.html" class="block hover:text-sky-600 dark:hover:text-teal-400 transition">Skills & Goals</a>
+          <a href="skills.html" class="block hover:text-sky-600 dark:hover:text-teal-400 transition">Skills & Courses</a>
           <a href="pricing.html" class="block hover:text-sky-600 dark:hover:text-teal-400 transition">Pricing</a>
+          <a href="dashboard.html" class="block hover:text-sky-600 dark:hover:text-teal-400 transition">Dashboard Simulation</a>
         </div>
         <div class="space-y-2">
           <h3 class="font-semibold">Company</h3>
@@ -306,3 +309,19 @@ const observer = new IntersectionObserver(
 );
 
 observer.observe(taglineSection);
+
+// ------------------- Skills/Courses ---------------------
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".accordion-btn");
+
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const content = btn.nextElementSibling; // accordion content div
+      const icon = btn.querySelector("span");
+
+      content.classList.toggle("hidden"); // toggle show/hide
+      icon.textContent = content.classList.contains("hidden") ? "+" : "-";
+    });
+  });
+});
+
