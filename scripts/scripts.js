@@ -292,15 +292,15 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // -------------------- HOME TAGLINE --------------------
-const taglineSection = document.getElementById('tagline');
-const words = document.querySelectorAll('.slide-word');
+const taglineSection = document.getElementById("tagline");
+const words = document.querySelectorAll(".slide-word");
 
 const observer = new IntersectionObserver(
-  entries => {
-    entries.forEach(entry => {
+  (entries) => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        taglineSection.classList.add('show');
-        words.forEach(word => word.classList.add('show'));
+        taglineSection.classList.add("show");
+        words.forEach((word) => word.classList.add("show"));
         observer.unobserve(taglineSection); // only trigger once
       }
     });
@@ -310,18 +310,5 @@ const observer = new IntersectionObserver(
 
 observer.observe(taglineSection);
 
-// ------------------- Skills/Courses ---------------------
-document.addEventListener("DOMContentLoaded", () => {
-  const buttons = document.querySelectorAll(".accordion-btn");
 
-  buttons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const content = btn.nextElementSibling; // accordion content div
-      const icon = btn.querySelector("span");
-
-      content.classList.toggle("hidden"); // toggle show/hide
-      icon.textContent = content.classList.contains("hidden") ? "+" : "-";
-    });
-  });
-});
 
