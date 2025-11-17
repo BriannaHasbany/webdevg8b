@@ -6,6 +6,10 @@
     <title>Dashboard - Simulation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles/styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
   </head>
   <body
     class="relative min-h-screen bg-skilllink-light dark:bg-skilllink-dark transition-colors duration-300 text-gray-900 dark:text-gray-100"
@@ -14,6 +18,9 @@
     <div id="header"></div>
 
     <main class="pt-24 px-6 space-y-12 max-w-7xl mx-auto">
+       <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6 text-center">
+        Try Out Our Fully Interactive Dashboard to Get a Feel For Your SkillLink Experience!
+        </h2>
       <!-- 1️⃣ Profile Section -->
       <section
         id="profile"
@@ -73,7 +80,7 @@
             >Edit Profile</a
           >
           <a
-            href="pricing.html"
+            href="#achievements"
             class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
             >View Achievements</a
           >
@@ -276,183 +283,10 @@
         </div>
       </section>
 
-      <!-- 3️⃣ Current Mentors -->
-      <section id="mentors">
-        <h2
-          class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6"
-        >
-          Current Mentors
-        </h2>
-        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
-          <div
-            class="flex flex-col items-center gap-2 bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow"
-          >
-            <div
-              class="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-white text-xl font-bold"
-            >
-              JS
-            </div>
-            <p class="font-semibold text-gray-800 dark:text-gray-200">
-              John Smith
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">Math Mentor</p>
-          </div>
+      <div id="mentorsContainer"></div>
 
-          <div
-            class="flex flex-col items-center gap-2 bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow"
-          >
-            <div
-              class="w-16 h-16 rounded-full bg-green-500 flex items-center justify-center text-white text-xl font-bold"
-            >
-              AK
-            </div>
-            <p class="font-semibold text-gray-800 dark:text-gray-200">
-              Alice Kim
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">
-              Science Mentor
-            </p>
-          </div>
-
-          <div
-            class="flex flex-col items-center gap-2 bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow"
-          >
-            <div
-              class="w-16 h-16 rounded-full bg-yellow-500 flex items-center justify-center text-white text-xl font-bold"
-            >
-              LM
-            </div>
-            <p class="font-semibold text-gray-800 dark:text-gray-200">
-              Liam Moore
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">
-              Writing Mentor
-            </p>
-          </div>
-
-          <div
-            class="flex flex-col items-center gap-2 bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow"
-          >
-            <div
-              class="w-16 h-16 rounded-full bg-red-500 flex items-center justify-center text-white text-xl font-bold"
-            >
-              TB
-            </div>
-            <p class="font-semibold text-gray-800 dark:text-gray-200">
-              Tara Brown
-            </p>
-            <p class="text-gray-500 dark:text-gray-400 text-sm">
-              Programming Mentor
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 4️⃣ Calendar -->
-      <section id="calendar">
-        <div class="flex items-center justify-between">
-          <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300">
-            Calendar & Meetings
-          </h2>
-
-          <!-- Plus Button -->
-          <button
-            id="addMeetingBtn"
-            class="w-10 h-10 bg-indigo-600 text-white rounded-full text-2xl flex items-center justify-center hover:bg-indigo-700"
-          >
-            +
-          </button>
-        </div>
-        <div
-          class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 overflow-x-auto"
-        >
-          <table class="w-full border-collapse text-left">
-            <thead>
-              <tr class="border-b border-gray-300 dark:border-gray-600">
-                <th class="py-2 px-3">Date</th>
-                <th class="py-2 px-3">Time</th>
-                <th class="py-2 px-3">Meeting</th>
-                <th class="py-2 px-3">Hosts</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="border-b border-gray-200 dark:border-gray-600">
-                <td class="py-2 px-3">2025-11-18</td>
-                <td class="py-2 px-3">10:00 AM</td>
-                <td class="py-2 px-3">Mentor Meeting: John Smith</td>
-                <td class="py-2 px-3">John Smith</td>
-              </tr>
-              <tr class="border-b border-gray-200 dark:border-gray-600">
-                <td class="py-2 px-3">2025-11-19</td>
-                <td class="py-2 px-3">2:00 PM</td>
-                <td class="py-2 px-3">Excel 101 Workshop</td>
-                <td class="py-2 px-3">Tara Brown, Jane Lowe</td>
-              </tr>
-              <tr class="border-b border-gray-200 dark:border-gray-600">
-                <td class="py-2 px-3">2025-11-20</td>
-                <td class="py-2 px-3">11:00 AM</td>
-                <td class="py-2 px-3">Python Q&A</td>
-                <td class="py-2 px-3">Tyler Eriks</td>
-              </tr>
-              <tr class="border-b border-gray-200 dark:border-gray-600">
-                <td class="py-2 px-3">2025-11-21</td>
-                <td class="py-2 px-3">1:00 PM</td>
-                <td class="py-2 px-3">Mentor Meeting: Alice Kim</td>
-                <td class="py-2 px-3">Alice Kim</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <div
-        id="meetingModal"
-        class="hidden fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center"
-      >
-        <div
-          class="bg-white dark:bg-gray-800 p-6 rounded-xl w-full max-w-lg shadow-lg"
-        >
-          <h3 class="text-xl font-bold mb-4 text-indigo-600">Add Meeting</h3>
-
-          <label class="block text-sm mb-1">Date</label>
-          <input
-            type="date"
-            class="w-full p-2 mb-3 rounded bg-gray-100 dark:bg-gray-700"
-          />
-
-          <label class="block text-sm mb-1">Time</label>
-          <input
-            type="time"
-            class="w-full p-2 mb-3 rounded bg-gray-100 dark:bg-gray-700"
-          />
-
-          <label class="block text-sm mb-1">Title</label>
-          <input
-            type="text"
-            placeholder="Meeting Title"
-            class="w-full p-2 mb-3 rounded bg-gray-100 dark:bg-gray-700"
-          />
-
-          <label class="block text-sm mb-1">Hosts</label>
-          <input
-            type="text"
-            placeholder="John Smith, etc."
-            class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"
-          />
-
-          <div class="flex justify-end gap-3 mt-4">
-            <button
-              id="closeModal"
-              class="px-4 py-2 bg-gray-500 text-white rounded-lg"
-            >
-              Cancel
-            </button>
-            <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg">
-              Add
-            </button>
-          </div>
-        </div>
-      </div>
+      <div id="calendarContainer"></div>
+      <div id="dashboardContainer"></div>
     </main>
 
     <!-- Footer injected externally -->

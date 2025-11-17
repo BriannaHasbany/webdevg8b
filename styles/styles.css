@@ -107,3 +107,7 @@ html.dark footer a:hover {
 .slide-word:nth-child(3) { transition-delay: 1s; }
 
 #tagline.show { opacity: 1; }
+
+html {
+  scroll-behavior: smooth;
+}

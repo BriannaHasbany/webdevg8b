@@ -277,6 +277,688 @@ document.addEventListener("DOMContentLoaded", function () {
     );
     observer.observe(taglineSection);
   }
+
+  // -------------------- SKILLS PAGE DYNAMICS --------------------
+  // === DATA ===
+  const featuredCourses = [
+    {
+      title: "Advanced Python",
+      icon: "fa-brands fa-python",
+      desc: "Deep dive into Python programming and advanced concepts.",
+      link: "pricing.html",
+    },
+    {
+      title: "Machine Learning Pro",
+      icon: "fa-solid fa-robot",
+      desc: "Learn advanced machine learning techniques and projects.",
+      link: "pricing.html",
+    },
+    {
+      title: "Creative Design Mastery",
+      icon: "fa-solid fa-palette",
+      desc: "Become a pro in graphic design and creative projects.",
+      link: "pricing.html",
+    },
+  ];
+
+  const coursesData = [
+    {
+      id: "programming",
+      title: "Programming",
+      courses: [
+        {
+          title: "Python Fundamentals",
+          icon: "fa-brands fa-python",
+          desc: "Learn Python from scratch.",
+          link: "pricing.html",
+        },
+        {
+          title: "JavaScript Essentials",
+          icon: "fa-brands fa-js",
+          desc: "Understand JS basics.",
+          link: "pricing.html",
+        },
+        {
+          title: "Intro to C++",
+          icon: "fa-solid fa-code",
+          desc: "Beginner C++ course.",
+          link: "pricing.html",
+        },
+        {
+          title: "Java Programming",
+          icon: "fa-brands fa-java",
+          desc: "Learn core Java concepts.",
+          link: "pricing.html",
+        },
+        {
+          title: "PHP Basics",
+          icon: "fa-brands fa-php",
+          desc: "Server-side scripting fundamentals.",
+          link: "pricing.html",
+        },
+        {
+          title: "Node.js Essentials",
+          icon: "fa-brands fa-node",
+          desc: "Backend JavaScript fundamentals.",
+          link: "pricing.html",
+        },
+      ],
+    },
+    {
+      id: "data-analytics",
+      title: "Data & Analytics",
+      courses: [
+        {
+          title: "Data Science Starter",
+          icon: "fa-solid fa-database",
+          desc: "Intro to data science.",
+          link: "pricing.html",
+        },
+        {
+          title: "SQL for Beginners",
+          icon: "fa-solid fa-table",
+          desc: "Learn SQL queries.",
+          link: "pricing.html",
+        },
+        {
+          title: "Excel for Data Analysis",
+          icon: "fa-solid fa-chart-line",
+          desc: "Analyze data with Excel.",
+          link: "pricing.html",
+        },
+        {
+          title: "Machine Learning Basics",
+          icon: "fa-solid fa-robot",
+          desc: "ML fundamentals.",
+          link: "pricing.html",
+        },
+        {
+          title: "Data Visualization",
+          icon: "fa-solid fa-chart-pie",
+          desc: "Visualize data effectively.",
+          link: "pricing.html",
+        },
+        {
+          title: "Power BI Essentials",
+          icon: "fa-solid fa-chart-bar",
+          desc: "Build interactive dashboards.",
+          link: "pricing.html",
+        },
+      ],
+    },
+    {
+      id: "creative-arts",
+      title: "Creative Arts & Design",
+      courses: [
+        {
+          title: "Graphic Design Basics",
+          icon: "fa-solid fa-paintbrush",
+          desc: "Intro to digital design principles.",
+          link: "pricing.html",
+        },
+        {
+          title: "Photography Essentials",
+          icon: "fa-solid fa-camera-retro",
+          desc: "Learn photography techniques.",
+          link: "pricing.html",
+        },
+        {
+          title: "UX/UI Design",
+          icon: "fa-solid fa-pencil-ruler",
+          desc: "Design intuitive interfaces.",
+          link: "pricing.html",
+        },
+        {
+          title: "Music Production",
+          icon: "fa-solid fa-music",
+          desc: "Create and mix your own music.",
+          link: "pricing.html",
+        },
+        {
+          title: "Video Editing",
+          icon: "fa-solid fa-video",
+          desc: "Edit videos like a pro.",
+          link: "pricing.html",
+        },
+        {
+          title: "3D Design & Animation",
+          icon: "fa-solid fa-drafting-compass",
+          desc: "Create 3D models and animations.",
+          link: "pricing.html",
+        },
+      ],
+    },
+    {
+      id: "professional-skills",
+      title: "Professional Skills",
+      courses: [
+        {
+          title: "Project Management",
+          icon: "fa-solid fa-briefcase",
+          desc: "Master planning & execution.",
+          link: "pricing.html",
+        },
+        {
+          title: "Negotiation Skills",
+          icon: "fa-solid fa-handshake",
+          desc: "Improve your persuasion skills.",
+          link: "pricing.html",
+        },
+        {
+          title: "Business Analytics",
+          icon: "fa-solid fa-chart-line",
+          desc: "Analyze business trends.",
+          link: "pricing.html",
+        },
+        {
+          title: "Leadership Skills",
+          icon: "fa-solid fa-lightbulb",
+          desc: "Lead teams effectively.",
+          link: "pricing.html",
+        },
+        {
+          title: "Time Management",
+          icon: "fa-solid fa-clock",
+          desc: "Boost productivity and efficiency.",
+          link: "pricing.html",
+        },
+        {
+          title: "Team Collaboration",
+          icon: "fa-solid fa-users",
+          desc: "Improve teamwork and communication.",
+          link: "pricing.html",
+        },
+      ],
+    },
+    {
+      id: "communication",
+      title: "Communication",
+      courses: [
+        {
+          title: "Public Speaking",
+          icon: "fa-solid fa-microphone",
+          desc: "Speak confidently in front of audiences.",
+          link: "pricing.html",
+        },
+        {
+          title: "Effective Writing",
+          icon: "fa-solid fa-comment-dots",
+          desc: "Write clearly and persuasively.",
+          link: "pricing.html",
+        },
+        {
+          title: "Interpersonal Communication",
+          icon: "fa-solid fa-comments",
+          desc: "Build strong relationships.",
+          link: "pricing.html",
+        },
+        {
+          title: "Negotiation Communication",
+          icon: "fa-solid fa-handshake-angle",
+          desc: "Negotiate effectively in any scenario.",
+          link: "pricing.html",
+        },
+        {
+          title: "Customer Communication",
+          icon: "fa-solid fa-headset",
+          desc: "Professional client interactions.",
+          link: "pricing.html",
+        },
+        {
+          title: "Conflict Resolution",
+          icon: "fa-solid fa-comment",
+          desc: "Resolve disagreements effectively.",
+          link: "pricing.html",
+        },
+      ],
+    },
+  ];
+
+  // === BUILD FEATURED COURSES ===
+  const featuredContainer = document.getElementById("featured-courses");
+  if (featuredContainer) {
+    featuredContainer.innerHTML = featuredCourses
+      .map(
+        (course) => `
+      <div class="bg-indigo-50 dark:bg-gray-700 shadow-lg rounded-xl p-6 flex flex-col items-center text-center hover:shadow-2xl transition">
+        <i class="${course.icon} text-5xl text-indigo-600 mb-4"></i>
+        <h3 class="text-2xl font-bold text-indigo-700 dark:text-indigo-200">${course.title}</h3>
+        <p class="text-gray-700 dark:text-gray-300 mt-2 text-center">${course.desc}</p>
+        <a href="${course.link}" class="mt-4 px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">View Course</a>
+      </div>
+    `
+      )
+      .join("");
+  }
+
+  // === BUILD COURSES SECTIONS ===
+  const coursesContainer = document.getElementById("courses-container");
+  if (coursesContainer) {
+    coursesData.forEach((section) => {
+      const sectionEl = document.createElement("section");
+      sectionEl.id = section.id;
+      sectionEl.className = "py-6";
+
+      sectionEl.innerHTML = `
+        <button class="w-full text-left flex justify-between items-center bg-indigo-100 dark:bg-gray-700 p-4 rounded-lg mb-4 hover:bg-indigo-200 dark:hover:bg-gray-600 transition" onclick="this.nextElementSibling.classList.toggle('hidden')">
+          <h2 class="text-2xl font-bold text-indigo-700 dark:text-indigo-300">${
+            section.title
+          }</h2>
+          <i class="fa-solid fa-chevron-down text-indigo-700 dark:text-indigo-300"></i>
+        </button>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+          ${section.courses
+            .map(
+              (course) => `
+            <div class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-5 flex flex-col items-center text-center hover:shadow-xl transition">
+              <i class="${course.icon} text-4xl text-indigo-500 mb-3"></i>
+              <h3 class="text-xl font-bold text-indigo-600 dark:text-indigo-300">${course.title}</h3>
+              <p class="text-gray-600 dark:text-gray-300 mt-2">${course.desc}</p>
+              <a href="${course.link}" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">View Course</a>
+            </div>
+          `
+            )
+            .join("")}
+        </div>
+      `;
+
+      coursesContainer.appendChild(sectionEl);
+    });
+  }
+
+  // -------------------- DASHBOARD CALENDAR --------------------
+
+  // HTML for calendar section
+  const calendarHTML = `
+<section id="calendar">
+  <div class="flex items-center justify-between mb-4">
+    <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300">Calendar & Meetings</h2>
+    <button id="addMeetingBtn" class="w-10 h-10 bg-indigo-600 text-white rounded-full text-2xl flex items-center justify-center hover:bg-indigo-700">+</button>
+  </div>
+  <div class="bg-white dark:bg-gray-800 shadow-md rounded-xl p-6 overflow-x-auto">
+    <table class="w-full border-collapse text-left">
+      <thead>
+        <tr class="border-b border-gray-300 dark:border-gray-600">
+          <th class="py-2 px-3">Date</th>
+          <th class="py-2 px-3">Time</th>
+          <th class="py-2 px-3">Meeting</th>
+          <th class="py-2 px-3">Hosts</th>
+        </tr>
+      </thead>
+      <tbody id="meetingTableBody">
+        <tr class="border-b border-gray-200 dark:border-gray-600">
+          <td class="py-2 px-3">2025-11-18</td>
+          <td class="py-2 px-3">10:00 AM</td>
+          <td class="py-2 px-3">Mentor Meeting: John Smith</td>
+          <td class="py-2 px-3">John Smith</td>
+        </tr>
+        <tr class="border-b border-gray-200 dark:border-gray-600">
+          <td class="py-2 px-3">2025-11-19</td>
+          <td class="py-2 px-3">2:00 PM</td>
+          <td class="py-2 px-3">Excel 101 Workshop</td>
+          <td class="py-2 px-3">Tara Brown, Jane Lowe</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Meeting Modal -->
+  <div id="meetingModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl w-full max-w-lg shadow-lg">
+    <h3 class="text-xl font-bold mb-4 text-indigo-600">Add Meeting</h3>
+    <div class="grid grid-cols-1 gap-3">
+      <div>
+        <label class="block text-sm mb-1">Date</label>
+        <input type="date" id="meetingDate" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Time</label>
+        <input type="time" id="meetingTime" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Meeting Title</label>
+        <input type="text" id="meetingTitle" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+      </div>
+      <div>
+        <label class="block text-sm mb-1">Hosts</label>
+        <input type="text" id="meetingHosts" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700" placeholder="Enter names or emails"/>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 mt-4">
+      <button id="closeModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg">Cancel</button>
+      <button id="saveMeeting" class="px-4 py-2 bg-indigo-600 text-white rounded-lg">Add</button>
+    </div>
+  </div>
+</div>
+</section>
+`;
+
+  // Only run if calendarContainer exists
+const calendarContainer = document.getElementById("calendarContainer");
+if (calendarContainer) {
+  calendarContainer.innerHTML = calendarHTML;
+
+  const addMeetingBtn = document.getElementById("addMeetingBtn");
+  const meetingModal = document.getElementById("meetingModal");
+  const closeModalBtn = document.getElementById("closeModal");
+  const saveMeetingBtn = document.getElementById("saveMeeting");
+
+  // Match table columns: Date, Time, Meeting, Hosts
+  const meetingDate = document.getElementById("meetingDate");
+  const meetingTime = document.getElementById("meetingTime");
+  const meetingTitle = document.getElementById("meetingTitle"); // rename to match "Meeting"
+  const meetingHost = document.getElementById("meetingHosts"); // rename to match "Hosts"
+
+  const meetingTableBody = document.getElementById("meetingTableBody");
+
+  // Show/Hide modal
+  window.showMeetingModal = function () {
+    meetingModal.classList.remove("hidden");
+    meetingModal.classList.add("flex");
+  };
+
+  window.hideMeetingModal = function () {
+    meetingModal.classList.add("hidden");
+    meetingModal.classList.remove("flex");
+  };
+
+  addMeetingBtn.addEventListener("click", showMeetingModal);
+  closeModalBtn.addEventListener("click", hideMeetingModal);
+
+  // Save new meeting
+  saveMeetingBtn.addEventListener("click", () => {
+    if (!meetingDate.value || !meetingTime.value || !meetingTitle.value || !meetingHost.value) {
+      alert("Please fill out all fields!");
+      return;
+    }
+
+    const newRow = document.createElement("tr");
+    newRow.className = "border-b border-gray-200 dark:border-gray-600";
+    newRow.innerHTML = `
+      <td class="py-2 px-3">${meetingDate.value}</td>
+      <td class="py-2 px-3">${meetingTime.value}</td>
+      <td class="py-2 px-3">${meetingTitle.value}</td>
+      <td class="py-2 px-3">${meetingHost.value}</td>
+    `;
+    meetingTableBody.appendChild(newRow);
+
+    // Clear inputs
+    meetingDate.value = "";
+    meetingTime.value = "";
+    meetingTitle.value = "";
+    meetingHost.value = "";
+
+    hideMeetingModal();
+
+    // Alert about simulation
+    alert("This is a simulation. To keep planning meetings, please choose a subscription plan.");
+  });
+}
+
+// --------------- MENTORS SECTION ------------------
+
+const mentorsHTML = `
+<section id="mentors">
+  <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-6">Current Mentors</h2>
+  <div id="mentorsGrid" class="grid sm:grid-cols-2 md:grid-cols-4 gap-6"></div>
+
+  <!-- Schedule Meeting Modal -->
+  <div id="mentorModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-xl w-full max-w-lg shadow-lg">
+      <h3 class="text-xl font-bold mb-4 text-indigo-600">Schedule a Meeting</h3>
+      <div class="grid grid-cols-1 gap-3">
+        <input type="text" id="firstName" placeholder="First Name" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+        <input type="text" id="lastName" placeholder="Last Name" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+        <input type="email" id="email" placeholder="Email" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+        <input type="date" id="meetingDate" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+        <input type="time" id="meetingTime" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+        <input type="text" id="meetingReason" placeholder="Reason for Meeting" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+      </div>
+      <div class="flex justify-end gap-3 mt-4">
+        <button id="closeMentorModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg">Close</button>
+        <button id="requestMeeting" class="px-4 py-2 bg-indigo-600 text-white rounded-lg">Request</button>
+      </div>
+    </div>
+  </div>
+</section>
+`;
+
+const mentorsContainer = document.getElementById("mentorsContainer");
+if (mentorsContainer) {
+  mentorsContainer.innerHTML = mentorsHTML;
+
+ const mentors = [
+  { initials: "JS", name: "John Smith", title: "Brand Manager at Nike" },
+  { initials: "AK", name: "Alice Kim", title: "Digital Marketing Lead at Spotify" },
+  { initials: "LM", name: "Liam Moore", title: "Content Strategist at HubSpot" },
+  { initials: "TB", name: "Tara Brown", title: "Marketing Analyst at Coca-Cola" },
+];
+
+  const mentorsGrid = document.getElementById("mentorsGrid");
+  mentors.forEach((mentor, index) => {
+    const mentorCard = document.createElement("div");
+    mentorCard.className = "flex flex-col items-center gap-2 bg-gray-100 dark:bg-gray-700 p-4 rounded-xl shadow";
+    mentorCard.innerHTML = `
+      <div class="w-16 h-16 rounded-full bg-indigo-500 flex items-center justify-center text-white text-xl font-bold">${mentor.initials}</div>
+      <p class="font-semibold text-gray-800 dark:text-gray-200">${mentor.name}</p>
+      <p class="text-gray-500 dark:text-gray-400 text-sm">${mentor.title}</p>
+      <button class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 scheduleBtn">Schedule Meeting</button>
+    `;
+    mentorsGrid.appendChild(mentorCard);
+  });
+
+  // Modal functionality
+  const mentorModal = document.getElementById("mentorModal");
+  const closeMentorModal = document.getElementById("closeMentorModal");
+  const requestMeeting = document.getElementById("requestMeeting");
+
+  const firstName = document.getElementById("firstName");
+  const lastName = document.getElementById("lastName");
+  const email = document.getElementById("email");
+  const meetingDate = document.getElementById("meetingDate");
+  const meetingTime = document.getElementById("meetingTime");
+  const meetingReason = document.getElementById("meetingReason");
+
+  // Open modal for any mentor
+  document.querySelectorAll(".scheduleBtn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      mentorModal.classList.remove("hidden");
+      mentorModal.classList.add("flex");
+    });
+  });
+
+  closeMentorModal.addEventListener("click", () => {
+    mentorModal.classList.add("hidden");
+    mentorModal.classList.remove("flex");
+  });
+
+  requestMeeting.addEventListener("click", () => {
+    if (!firstName.value || !lastName.value || !email.value || !meetingDate.value || !meetingTime.value || !meetingReason.value) {
+      alert("Please fill out all fields!");
+      return;
+    }
+
+    // Clear inputs after request
+    firstName.value = "";
+    lastName.value = "";
+    email.value = "";
+    meetingDate.value = "";
+    meetingTime.value = "";
+    meetingReason.value = "";
+
+    mentorModal.classList.add("hidden");
+    mentorModal.classList.remove("flex");
+
+    alert("This is a simulation. To schedule actual meetings, please choose a subscription plan.");
+  });
+}
+
+// -------------------- DASHBOARD SECTIONS --------------------
+
+const dashboardSectionsHTML = `
+<!-- Goals Section -->
+<section id="goals" class="mb-8">
+  <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-4 flex justify-between items-center">
+    Goals
+    <button id="addGoalBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700">Add Goal</button>
+  </h2>
+  <ul id="goalsList" class="space-y-3">
+    <li class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow flex justify-between items-center">
+      <span>Increase LinkedIn followers by 500</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">50% complete</span>
+    </li>
+    <li class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow flex justify-between items-center">
+      <span>Launch marketing campaign for new product</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">30% complete</span>
+    </li>
+  </ul>
+</section>
+
+<!-- Current Tasks Section -->
+<section id="tasks" class="mb-8">
+  <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-4 flex justify-between items-center">
+    Current Tasks
+    <button id="addTaskBtn" class="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm hover:bg-indigo-700">Add Task</button>
+  </h2>
+  <ul id="tasksList" class="space-y-3">
+    <li class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow flex justify-between items-center">
+      <span>Create social media content calendar</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Due: Nov 20</span>
+    </li>
+    <li class="bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow flex justify-between items-center">
+      <span>Analyze email campaign metrics</span>
+      <span class="text-sm text-gray-500 dark:text-gray-400">Due: Nov 22</span>
+    </li>
+  </ul>
+</section>
+
+<!-- Achievements Section -->
+<section id="achievements" class="mb-8">
+  <h2 class="text-3xl font-bold text-indigo-700 dark:text-indigo-300 mb-4">Achievements</h2>
+  <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6">
+    <div class="flex flex-col items-center gap-2 bg-indigo-50 dark:bg-indigo-900 p-4 rounded-xl shadow hover:scale-105 transition transform">
+      <div class="w-16 h-16 flex items-center justify-center bg-indigo-600 text-white text-3xl rounded-full">
+        <i class="fas fa-award"></i>
+      </div>
+      <p class="font-semibold text-gray-800 dark:text-gray-200 text-center mt-2">Certified Digital Marketer</p>
+    </div>
+
+    <div class="flex flex-col items-center gap-2 bg-green-50 dark:bg-green-900 p-4 rounded-xl shadow hover:scale-105 transition transform">
+      <div class="w-16 h-16 flex items-center justify-center bg-green-600 text-white text-3xl rounded-full">
+        <i class="fas fa-bullseye"></i>
+      </div>
+      <p class="font-semibold text-gray-800 dark:text-gray-200 text-center mt-2">Social Media Expert</p>
+    </div>
+
+    <div class="flex flex-col items-center gap-2 bg-yellow-50 dark:bg-yellow-900 p-4 rounded-xl shadow hover:scale-105 transition transform">
+      <div class="w-16 h-16 flex items-center justify-center bg-yellow-500 text-white text-3xl rounded-full">
+        <i class="fas fa-lightbulb"></i>
+      </div>
+      <p class="font-semibold text-gray-800 dark:text-gray-200 text-center mt-2">Content Marketing Pro</p>
+    </div>
+
+    <div class="flex flex-col items-center gap-2 bg-purple-50 dark:bg-purple-900 p-4 rounded-xl shadow hover:scale-105 transition transform">
+      <div class="w-16 h-16 flex items-center justify-center bg-purple-600 text-white text-3xl rounded-full">
+        <i class="fas fa-rocket"></i>
+      </div>
+      <p class="font-semibold text-gray-800 dark:text-gray-200 text-center mt-2">Email Campaign Specialist</p>
+    </div>
+  </div>
+</section>
+
+<!-- Goal/Task Modal -->
+<div id="itemModal" class="hidden fixed inset-0 z-50 bg-black bg-opacity-40 flex items-center justify-center">
+  <div class="bg-white dark:bg-gray-800 p-6 rounded-xl w-full max-w-lg shadow-lg">
+    <h3 id="modalTitle" class="text-xl font-bold mb-4 text-indigo-600"></h3>
+    <div class="grid grid-cols-1 gap-3">
+      <div>
+        <label class="block text-sm mb-1" id="modalLabel"></label>
+        <input type="text" id="modalInput" class="w-full p-2 rounded bg-gray-100 dark:bg-gray-700"/>
+      </div>
+    </div>
+    <div class="flex justify-end gap-3 mt-4">
+      <button id="closeItemModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg">Close</button>
+      <button id="saveItemModal" class="px-4 py-2 bg-indigo-600 text-white rounded-lg">Add</button>
+    </div>
+  </div>
+</div>
+`;
+
+const dashboardContainer = document.getElementById("dashboardContainer");
+if (dashboardContainer) {
+  dashboardContainer.innerHTML += dashboardSectionsHTML;
+
+  // Elements
+  const addGoalBtn = document.getElementById("addGoalBtn");
+  const addTaskBtn = document.getElementById("addTaskBtn");
+  const itemModal = document.getElementById("itemModal");
+  const closeItemModal = document.getElementById("closeItemModal");
+  const saveItemModal = document.getElementById("saveItemModal");
+  const modalTitle = document.getElementById("modalTitle");
+  const modalLabel = document.getElementById("modalLabel");
+  const modalInput = document.getElementById("modalInput");
+
+  const goalsList = document.getElementById("goalsList");
+  const tasksList = document.getElementById("tasksList");
+
+  let currentType = null; // "goal" or "task"
+
+  // Show modal
+  function showItemModal(type) {
+    currentType = type;
+    modalTitle.textContent = type === "goal" ? "Add Goal" : "Add Task";
+    modalLabel.textContent = type === "goal" ? "Goal Description" : "Task Description";
+    modalInput.value = "";
+    itemModal.classList.remove("hidden");
+    itemModal.classList.add("flex");
+  }
+
+  function hideItemModal() {
+    itemModal.classList.add("hidden");
+    itemModal.classList.remove("flex");
+  }
+
+  addGoalBtn.addEventListener("click", () => showItemModal("goal"));
+  addTaskBtn.addEventListener("click", () => showItemModal("task"));
+  closeItemModal.addEventListener("click", hideItemModal);
+
+  saveItemModal.addEventListener("click", () => {
+    if (!modalInput.value) {
+      alert("Please enter a description!");
+      return;
+    }
+
+    const newItem = document.createElement("li");
+    newItem.className = "bg-gray-100 dark:bg-gray-700 p-4 rounded-lg shadow flex justify-between items-center";
+
+    if (currentType === "goal") {
+      newItem.innerHTML = `<span>${modalInput.value}</span><span class="text-sm text-gray-500 dark:text-gray-400">0% complete</span>`;
+      goalsList.appendChild(newItem);
+    } else if (currentType === "task") {
+      newItem.innerHTML = `<span>${modalInput.value}</span><span class="text-sm text-gray-500 dark:text-gray-400">Due: TBD</span>`;
+      tasksList.appendChild(newItem);
+    }
+
+    hideItemModal();
+    alert("This is a simulation. To fully track goals and tasks, please choose a subscription plan.");
+  });
+
+  // Scroll to Achievements section
+  const viewAchievementsBtns = document.querySelectorAll(".viewAchievementsBtn");
+  viewAchievementsBtns.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const achievementsSection = document.getElementById("achievements");
+      achievementsSection.scrollIntoView({ behavior: "smooth" });
+    });
+  });
+}
+
+
+
+
+
+
+
 });
 
 tailwind.config = { darkMode: "class" };
