@@ -111,3 +111,62 @@ html.dark footer a:hover {
 html {
   scroll-behavior: smooth;
 }
+
+/* -------------------- MENTOR PROFILES -------------------- */
+.mentor-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  justify-items: center;
+  margin-top: 2rem;
+  padding: 0 1rem;
+  max-width: 1200px; /* keeps content centered */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mentor-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  width: 100%;        /* responsive width */
+  max-width: 400px;   /* prevents cards from stretching too wide */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.mentor-card img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 15px;
+  background-color: #ddd;
+}
+
+.mentor-name {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.mentor-description {
+  font-size: 1em;
+  color: #555;
+}
+
+/* -------------------- DARK MODE FOR MENTOR CARDS -------------------- */
+html.dark .mentor-card {
+  background: #1e293b;
+  box-shadow: 0 4px 8px rgba(255,255,255,0.05);
+}
+
+html.dark .mentor-name {
+  color: #f1f5f9;
+}
+
+html.dark .mentor-description {
+  color: #d1d5db;
+}
