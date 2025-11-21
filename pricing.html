@@ -14,17 +14,11 @@
   >
     <div id="header"></div>
 
-    <main>
-      <section class=" py-16 px-6">
-         <div class="max-w-2xl lg:max-w-4xl mx-auto text-center">
-          <h2
-            class="text-4xl font-extrabold text-indigo-600 dark:text-indigo-400 mb-4"
-          >
-           Pricing Plans
-          </h2>
-          <p class="text-gray-700 dark:text-gray-300 text-lg sm:text-xl mb-10">
-            Choose the plan that meets your learning goals. 
-          </p>
+    <main class="text-indigo-600 dark:text-indigo-300">
+      <section class="bg-gray-50 dark:bg-gray-800 py-16 px-6">
+        <div class="max-w-7xl mx-auto text-center mb-12">
+          <h2 class="text-4xl font-bold">Plans & Pricing</h2>
+          <p class="mt-3">Choose the plan that fits your learning goals</p>
         </div>
 
         <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
@@ -32,15 +26,16 @@
             class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-6 flex flex-col"
           >
             <h3 class="text-xl font-semibold">Starter</h3>
-            <p class="mt-1 text-gray-500 dark:text-gray-400 text-sm">Free</p>
+            <p class="mt-1 text-sm">Free</p>
 
-            <p class="mt-4 text-gray-600 dark:text-gray-300 flex-1">
+            <p class="mt-4 flex-1 text-black dark:text-gray-200">
               Create a profile, browse mentors, and send one free message per
               month.
             </p>
 
             <button
-              class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500"
+              class="select-btn mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+              data-plan="Starter"
             >
               Select
             </button>
@@ -50,41 +45,39 @@
             class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-6 flex flex-col"
           >
             <h3 class="text-xl font-semibold">Learner</h3>
-            <p class="mt-1 text-gray-500 dark:text-gray-400 text-sm">
-              $19 / month
-            </p>
+            <p class="mt-1 text-sm">$19 / month</p>
 
-            <p class="mt-4 text-gray-600 dark:text-gray-300 flex-1">
+            <p class="mt-4 flex-1 text-black dark:text-gray-200">
               Schedule 2 mentor sessions per month and track progress goals.
             </p>
 
             <button
-              class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500"
+              class="select-btn mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+              data-plan="Learner"
             >
               Select
             </button>
           </div>
 
           <div
-            class="bg-blue-50 dark:bg-blue-900/30 border-2 border-blue-600 rounded-xl shadow p-6 flex flex-col"
+            class="bg-indigo-50 dark:bg-indigo-900/30 border-2 border-indigo-600 rounded-xl shadow p-6 flex flex-col"
           >
             <div
-              class="text-blue-600 dark:text-blue-400 text-xs font-bold uppercase mb-2"
+              class="text-indigo-600 dark:text-indigo-400 text-xs font-bold uppercase mb-2"
             >
               Most Popular
             </div>
             <h3 class="text-xl font-semibold">Pro Learner</h3>
-            <p class="mt-1 text-gray-700 dark:text-gray-300 text-sm">
-              $39 / month
-            </p>
+            <p class="mt-1 text-sm">$39 / month</p>
 
-            <p class="mt-4 text-gray-700 dark:text-gray-200 flex-1">
+            <p class="mt-4 flex-1 text-black dark:text-gray-200">
               Unlimited mentor chats, AI skill recommendations, and session
               recordings.
             </p>
 
             <button
-              class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500"
+              class="select-btn mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+              data-plan="Pro Learner"
             >
               Select
             </button>
@@ -94,25 +87,122 @@
             class="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl shadow-sm p-6 flex flex-col"
           >
             <h3 class="text-xl font-semibold">Mentor+</h3>
-            <p class="mt-1 text-gray-500 dark:text-gray-400 text-sm">
-              $79 / month
-            </p>
+            <p class="mt-1 text-sm">$79 / month</p>
 
-            <p class="mt-4 text-gray-600 dark:text-gray-300 flex-1">
+            <p class="mt-4 flex-1 text-black dark:text-gray-200">
               Access all features + ability to host paid mentoring sessions.
             </p>
 
             <button
-              class="mt-6 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-500"
+              class="select-btn mt-6 w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+              data-plan="Mentor+"
             >
               Select
             </button>
           </div>
         </div>
       </section>
+
+      <section
+        id="payment-section"
+        class="opacity-0 translate-y-10 transition-all duration-700 max-w-2xl mx-auto mt-20 mb-20 p-8 bg-white dark:bg-gray-900 border border-gray-300 dark:border-gray-700 rounded-xl shadow-lg"
+      >
+        <h2 class="text-2xl font-bold text-center">Complete Your Purchase</h2>
+        <p class="text-center mb-6">
+          Selected Plan: <span id="selected-plan" class="font-semibold"></span>
+        </p>
+
+        <form class="space-y-4">
+          <div>
+            <label class="block text-sm font-medium mb-1"
+              >Cardholder Name</label
+            >
+            <input
+              type="text"
+              class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
+              placeholder="John Doe"
+            />
+          </div>
+
+          <div>
+            <label class="block text-sm font-medium mb-1">Card Number</label>
+            <input
+              id="card-number"
+              type="text"
+              class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
+              placeholder="1234 5678 9012 3456"
+            />
+          </div>
+
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label class="block text-sm font-medium mb-1"
+                >Expiration Date</label
+              >
+              <input
+                id="expiry"
+                type="text"
+                class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
+                placeholder="MM/YY"
+              />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium mb-1">CVC</label>
+              <input
+                id="cvv"
+                type="text"
+                class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
+                placeholder="123"
+              />
+            </div>
+          </div>
+
+          <button
+            class="w-full mt-4 bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-500 transition-colors duration-300"
+          >
+            Submit Payment
+          </button>
+        </form>
+      </section>
     </main>
 
     <div id="footer"></div>
+
+    <script>
+      document.querySelectorAll(".select-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const plan = btn.getAttribute("data-plan");
+          document.getElementById("selected-plan").textContent = plan;
+
+          const payment = document.getElementById("payment-section");
+          payment.classList.remove("opacity-0", "translate-y-10");
+
+          payment.scrollIntoView({ behavior: "smooth" });
+        });
+      });
+
+      const cardNumber = document.getElementById("card-number");
+      cardNumber.addEventListener("input", () => {
+        cardNumber.value = cardNumber.value.replace(/\D/g, "").slice(0, 16);
+      });
+
+      const cvv = document.getElementById("cvv");
+      cvv.addEventListener("input", () => {
+        cvv.value = cvv.value.replace(/\D/g, "").slice(0, 3);
+      });
+
+      const expiry = document.getElementById("expiry");
+      expiry.addEventListener("input", () => {
+        let v = expiry.value.replace(/\D/g, "").slice(0, 4);
+        if (v.length >= 3) {
+          expiry.value = v.slice(0, 2) + "/" + v.slice(2);
+        } else {
+          expiry.value = v;
+        }
+      });
+    </script>
+
     <script src="scripts/scripts.js"></script>
   </body>
 </html>
