@@ -119,9 +119,11 @@
             >
             <input
               type="text"
+              id="card-name"
               class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
               placeholder="John Doe"
             />
+            <p class="text-red-500 text-sm mt-1 hidden"></p>
           </div>
 
           <div>
@@ -132,6 +134,7 @@
               class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
               placeholder="1234 5678 9012 3456"
             />
+            <p class="text-red-500 text-sm mt-1 hidden"></p>
           </div>
 
           <div class="grid grid-cols-2 gap-4">
@@ -145,6 +148,7 @@
                 class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
                 placeholder="MM/YY"
               />
+              <p class="text-red-500 text-sm mt-1 hidden"></p>
             </div>
 
             <div>
@@ -155,6 +159,7 @@
                 class="w-full p-2 border rounded-lg dark:bg-gray-800 text-black dark:text-gray-200"
                 placeholder="123"
               />
+              <p class="text-red-500 text-sm mt-1 hidden"></p>
             </div>
           </div>
 
@@ -169,7 +174,9 @@
 
     <div id="footer"></div>
 
+    <!-- FULL SCRIPT WITH VALIDATION -->
     <script>
+      // --- PLAN SELECTION ---
       document.querySelectorAll(".select-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           const plan = btn.getAttribute("data-plan");
@@ -182,24 +189,83 @@
         });
       });
 
+      // INPUT ELEMENTS
       const cardNumber = document.getElementById("card-number");
+      const cvv = document.getElementById("cvv");
+      const expiry = document.getElementById("expiry");
+      const nameInput = document.getElementById("card-name");
+      const form = document.querySelector("form");
+
+      // HELPERS
+      function showError(input, message) {
+        let error = input.nextElementSibling;
+        error.textContent = message;
+        error.classList.remove("hidden");
+        input.classList.add("border-red-500");
+      }
+
+      function clearError(input) {
+        let error = input.nextElementSibling;
+        error.textContent = "";
+        error.classList.add("hidden");
+        input.classList.remove("border-red-500");
+      }
+
+      // FORMATTING
       cardNumber.addEventListener("input", () => {
         cardNumber.value = cardNumber.value.replace(/\D/g, "").slice(0, 16);
+        clearError(cardNumber);
       });
 
-      const cvv = document.getElementById("cvv");
       cvv.addEventListener("input", () => {
         cvv.value = cvv.value.replace(/\D/g, "").slice(0, 3);
+        clearError(cvv);
       });
 
-      const expiry = document.getElementById("expiry");
       expiry.addEventListener("input", () => {
         let v = expiry.value.replace(/\D/g, "").slice(0, 4);
-        if (v.length >= 3) {
-          expiry.value = v.slice(0, 2) + "/" + v.slice(2);
-        } else {
-          expiry.value = v;
+        if (v.length >= 3) expiry.value = v.slice(0, 2) + "/" + v.slice(2);
+        else expiry.value = v;
+        clearError(expiry);
+      });
+
+      nameInput.addEventListener("input", () => clearError(nameInput));
+
+      // VALIDATION ON SUBMIT
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        let valid = true;
+
+        if (nameInput.value.trim() === "") {
+          showError(nameInput, "Name is required.");
+          valid = false;
         }
+
+        if (cardNumber.value.length !== 16) {
+          showError(cardNumber, "Card number must be 16 digits.");
+          valid = false;
+        }
+
+        if (!/^\d{2}\/\d{2}$/.test(expiry.value)) {
+          showError(expiry, "Expiry must be MM/YY.");
+          valid = false;
+        }
+
+        if (cvv.value.length !== 3) {
+          showError(cvv, "CVC must be 3 digits.");
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        // SUCCESS MESSAGE
+        const success = document.createElement("div");
+        success.className =
+          "mt-6 p-4 bg-green-600 text-white text-center rounded-lg animate-fade-in";
+        success.textContent = "Thanks for purchasing!";
+
+        form.replaceWith(success);
       });
     </script>
 
